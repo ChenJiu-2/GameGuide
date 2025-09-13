@@ -14,22 +14,35 @@
     li { margin: 6px 0; }
     a { text-decoration: none; color: blue; }
     a:hover { text-decoration: underline; }
+    .lang-switch { margin: 15px 0; }
+    .lang-switch button {
+      margin-right: 8px;
+      padding: 5px 10px;
+      border: none;
+      background: purple;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .lang-switch button:hover {
+      background: darkmagenta;
+    }
   </style>
 </head>
 <body>
-  <h1>跨服活动</h1>
+  <h1 class="translatable">跨服活动</h1>
   <nav>
-    <a href="../index.html">🏠 返回首页</a>
+    <a href="../index.html" class="translatable">🏠 返回首页</a>
   </nav>
 
-    <!-- 简繁切换按钮 -->
+  <!-- 简繁切换按钮 -->
   <div class="lang-switch">
     <button onclick="toSimplified()">简体</button>
     <button onclick="toTraditional()">繁體</button>
   </div>
 
-  <h2>主要活动</h2>
-  <ul>
+  <h2 class="translatable">主要活动</h2>
+  <ul class="translatable">
     <li>蓬莱</li>
     <li>舌战群儒</li>
     <li>攻城战</li>
