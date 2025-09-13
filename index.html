@@ -4,34 +4,108 @@
   <meta charset="UTF-8">
   <title>叫我万岁爷攻略站</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
-    h1 { color: darkred; }
-    nav a { margin-right: 15px; text-decoration: none; color: blue; }
-    nav a:hover { text-decoration: underline; }
-    footer { margin-top: 40px; font-size: 0.9em; color: gray; }
+    body { 
+      font-family: "Microsoft YaHei", Arial, sans-serif; 
+      margin: 0; 
+      padding: 0; 
+      background: #f4f4f4; 
+      line-height: 1.6; 
+    }
+    header {
+      background: #8B0000;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    nav {
+      background: #333;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      display: inline-block;
+      margin: 0 15px;
+      padding: 8px 15px;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background: #8B0000;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #8B0000;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #333;
+      color: white;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
-  <h1>叫我万岁爷攻略站</h1>
-  <p>欢迎来到《叫我万岁爷》游戏攻略网站，这里整理了游戏中的养成攻略、充值信息、跨服活动以及其他实用内容。</p>
+  <header>
+    <h1>叫我万岁爷攻略站</h1>
+    <p>非官方粉丝攻略站，汇总养成、充值、跨服活动与其他玩法</p>
+  </header>
 
   <nav>
-    <a href="guides/development.html">🎮 游戏养成</a> |
-    <a href="guides/topup.html">💎 充值相关</a> |
-    <a href="guides/cross-server.html">🌐 跨服活动</a> |
+    <a href="guides/development.html">🎮 养成发展</a>
+    <a href="guides/topup.html">💎 充值相关</a>
+    <a href="guides/cross-server.html">🌐 跨服活动</a>
     <a href="guides/other.html">📚 其他</a>
   </nav>
 
-  <h2>网站内容预览</h2>
-  <ul>
-    <li><strong>游戏养成：</strong> 大臣、妃子、悟性、珍宝、府邸、等级、子女、爵位等系统。</li>
-    <li><strong>充值相关：</strong> VIP价格、元宝礼包、各国价格表。</li>
-    <li><strong>跨服活动：</strong> 圣君、古藏、旷古活动及详细玩法。</li>
-    <li><strong>其他：</strong> 涉川题库与谜题、万岁庆典等。</li>
-  </ul>
+  <div class="container">
+    <div class="card">
+      <h2>🎮 养成发展</h2>
+      <p>大臣、妃子、悟性、珍宝、府邸、爵位等养成系统解析。</p>
+      <a href="guides/development.html">进入 →</a>
+    </div>
+
+    <div class="card">
+      <h2>💎 充值相关</h2>
+      <p>VIP价格、元宝礼包、各国价格表，一目了然。</p>
+      <a href="guides/topup.html">进入 →</a>
+    </div>
+
+    <div class="card">
+      <h2>🌐 跨服活动</h2>
+      <p>圣君、古藏、旷古系列活动，详细玩法与攻略技巧。</p>
+      <a href="guides/cross-server.html">进入 →</a>
+    </div>
+
+    <div class="card">
+      <h2>📚 其他</h2>
+      <p>涉川题库、谜题答案，以及万岁庆典等特别活动。</p>
+      <a href="guides/other.html">进入 →</a>
+    </div>
+  </div>
 
   <footer>
-    <p>© 2025 叫我万岁爷攻略站 | 非官方粉丝制作</p>
+    <p>© 2025 叫我万岁爷攻略站 | 粉丝制作</p>
   </footer>
 </body>
 </html>
