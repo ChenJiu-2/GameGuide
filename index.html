@@ -107,5 +107,18 @@
   <footer>
     <p>© 2025 叫我万岁爷攻略站 | 粉丝制作</p>
   </footer>
+
+    <!-- 简繁切换脚本 -->
+  <script>
+    const converterS2T = OpenCC.Converter({ from: 'cn', to: 'tw' }); 
+    const converterT2S = OpenCC.Converter({ from: 'tw', to: 'cn' }); 
+
+    function toSimplified() {
+      document.body.innerHTML = converterT2S(document.body.innerHTML);
+    }
+    function toTraditional() {
+      document.body.innerHTML = converterS2T(document.body.innerHTML);
+    }
+  </script>
 </body>
 </html>
