@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>游戏养成 - 叫我万岁爷攻略站</title>
+  <script src="https://cdn.jsdelivr.net/npm/opencc-js/dist/umd/full.min.js"></script>
+  <script src="../lang.js"></script>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
     h1 { color: darkblue; }
@@ -14,11 +16,16 @@
   </style>
 </head>
 <body>
-  <h1>游戏养成</h1>
+  <h1 class="translatable">游戏养成</h1>
   <nav>
     <a href="../index.html">🏠 返回首页</a>
   </nav>
 
+  <div class="lang-switch">
+    <button onclick="toSimplified()">简体</button>
+    <button onclick="toTraditional()">繁體</button>
+  </div>
+  
   <h2>大臣列表</h2>
   <ul>
     <li>亘古</li>
