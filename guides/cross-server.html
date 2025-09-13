@@ -2,6 +2,9 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
+  <script src="https://cdn.jsdelivr.net/npm/opencc-js/dist/umd/full.min.js"></script>
+  <script src="lang.js"></script>
+
   <title>跨服活动 - 叫我万岁爷攻略站</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
@@ -18,6 +21,12 @@
   <nav>
     <a href="../index.html">🏠 返回首页</a>
   </nav>
+
+    <!-- 简繁切换按钮 -->
+  <div class="lang-switch">
+    <button onclick="toSimplified()">简体</button>
+    <button onclick="toTraditional()">繁體</button>
+  </div>
 
   <h2>主要活动</h2>
   <ul>
