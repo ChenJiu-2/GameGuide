@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>叫我万岁爷攻略站</title>
   <script src="https://cdn.jsdelivr.net/npm/opencc-js/dist/umd/full.min.js"></script>
+  <script src="lang.js"></script>
+  
   <style>
     body { 
       font-family: "Microsoft YaHei", Arial, sans-serif; 
@@ -123,19 +125,6 @@
     <p>© 2025 叫我万岁爷攻略站 | 粉丝制作</p>
   </footer>
 
-  <!-- 简繁切换脚本 -->
-  <script>
-    const converterS2T = OpenCC.Converter({ from: 'cn', to: 'tw' }); 
-    const converterT2S = OpenCC.Converter({ from: 'tw', to: 'cn' }); 
-
-    function convertText(converter) {
-      document.querySelectorAll('.translatable').forEach(el => {
-        el.innerHTML = converter(el.innerHTML);
-      });
-    }
-
-    function toSimplified() { convertText(converterT2S); }
-    function toTraditional() { convertText(converterS2T); }
   </script>
 </body>
 </html>
