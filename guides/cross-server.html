@@ -2,65 +2,220 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
+  <title>跨服活动 - 叫我万岁爷攻略站</title>
   <script src="https://cdn.jsdelivr.net/npm/opencc-js/dist/umd/full.min.js"></script>
   <script src="lang.js"></script>
 
-  <title>跨服活动 - 叫我万岁爷攻略站</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
-    h1 { color: purple; }
-    h2 { margin-top: 20px; }
-    ul { list-style-type: none; padding-left: 0; }
-    li { margin: 6px 0; }
-    a { text-decoration: none; color: blue; }
-    a:hover { text-decoration: underline; }
-    .lang-switch { margin: 15px 0; }
-    .lang-switch button {
-      margin-right: 8px;
-      padding: 5px 10px;
-      border: none;
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    body {
+      background: url("../background.jpg") no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(255,255,255,0.5);
+      z-index: -1;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-shrink: 0;
       background: purple;
       color: white;
-      border-radius: 4px;
-      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      height: 60px;
     }
-    .lang-switch button:hover {
-      background: darkmagenta;
+    header h1 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+    .menu {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .menu a, .menu button {
+      color: white;
+      text-decoration: none;
+      font-size: 1em;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    .menu a:hover, .menu button:hover {
+      background: indigo;
+    }
+
+    /* 内容区 */
+    .content {
+      flex: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      width: 100%;
+    }
+
+    .page-title {
+      color: purple;
+      font-size: 2em;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    /* 本页导航 */
+    .sub-menu {
+      margin-bottom: 20px;
+    }
+    .sub-menu ul {
+      list-style-type: disc;
+      padding-left: 40px;
+    }
+    .sub-menu a {
+      text-decoration: none;
+      color: purple;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .sub-menu a:hover {
+      background: #e0c0ff;
+    }
+
+    /* Section 框 */
+    .section-box {
+      background: rgba(255,255,255,0.9);
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    .section-box h2 {
+      margin-top: 0;
+      color: darkblue;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #333;
+      color: white;
+      flex-shrink: 0;
     }
   </style>
 </head>
 <body>
-  <h1 class="translatable">跨服活动</h1>
-  <nav>
-    <a href="../index.html" class="translatable">🏠 返回首页</a>
-  </nav>
 
-  <!-- 简繁切换按钮 -->
-  <div class="lang-switch">
-    <button onclick="toSimplified()">简体</button>
-    <button onclick="toTraditional()">繁體</button>
-  </div>
+  <!-- 顶部 Header -->
+  <header>
+    <a href="../index.html" class="translateble" style="color:white; text-decoration:none; font-size:1.5em; font-weight:bold;">
+      叫我万岁爷攻略站
+    </a>
+    <div class="menu">
+      <a href="development.html">游戏养成</a>
+      <a href="cross-server.html">跨服活动</a>
+      <a href="other.html">其他活动</a>
+      <a href="topup.html">充值相关</a>
+      <button onclick="toSimplified()">简</button>
+      <span style="color:white;">|</span>
+      <button onclick="toTraditional()">繁</button>
+    </div>
+  </header>
 
-  <h2 class="translatable">主要活动</h2>
-  <ul class="translatable">
-    <li>蓬莱</li>
-    <li>舌战群儒</li>
-    <li>攻城战</li>
-    <li>棋逢对手</li>
-    <li>遗迹</li>
-    <li>那达慕</li>
-    <li>千机迷云</li>
-    <li>攻城掠地</li>
-    <li>青瓷御品</li>
-    <li>逐鹿楼兰</li>
-    <li>威巡四海</li>
-    <li>九歌逸潭</li>
-    <li>钲鼓连烽</li>
-    <li>羽境凌川</li>
-    <li>梨园溯隐</li>
-    <li>九龙窃闻</li>
-    <li>贤才强国</li>
-    <li>其他 - 万岁庆典</li>
-  </ul>
+  <!-- 页面内容 -->
+  <div class="content translateble">
+
+    <!-- 页面标题 -->
+    <div class="page-title translatable">跨服活动</div>
+
+    <!-- 本页导航 -->
+    <nav class="sub-menu translatable">
+      <ul>
+        <li><a href="#guoli">国力争霸</a></li>
+        <li><a href="#qinmi">亲密争霸</a></li>
+        <li><a href="#wuxing">悟性争霸</a></li>
+        <li><a href="#penglai">蓬莱争霸</a></li>
+        <li><a href="#shezhan">舌战群儒</a></li>
+        <li><a href="#gongcheng">攻城战</a></li>
+        <li><a href="#qifeng">棋逢对手</a></li>
+        <li><a href="#yiji">遗迹争霸</a></li>
+        <li><a href="#nadamu">那达慕</a></li>
+        <li><a href="#qianji">千机迷云</a></li>
+        <li><a href="#qizhen">奇珍争霸</a></li>
+        <li><a href="#luidi">攻城掠地</a></li>
+        <li><a href="#qingci">青瓷御品</a></li>
+        <li><a href="#xiancai">贤才强国</a></li>
+        <li><a href="#loulan">逐鹿楼兰</a></li>
+        <li><a href="#weixun">威巡四海</a></li>
+        <li><a href="#xiuxue">皇子修学</a></li>
+        <li><a href="#shengwei">声威争霸</a></li>
+        <li><a href="#jiuge">九歌逸潭</a></li>
+        <li><a href="#zhenggu">钲鼓连烽</a></li>
+        <li><a href="#yujing">羽境凌川</a></li>
+        <li><a href="#liyuan">梨园溯隐</a></li>
+        <li><a href="#canjian">残简争霸</a></li>
+        <li><a href="#mingchen">名臣翊辅</a></li>
+        <li><a href="#jianhan">荐函争霸</a></li>
+        <li><a href="#jiulong">九龙窃闻</a></li>  
+      </ul>
+    </nav>
+
+  <!-- 各活动内容框 -->
+  <div class="section-box" id="guoli"><h2 class="translatable">国力争霸</h2></div>
+  <div class="section-box" id="qinmi"><h2 class="translatable">亲密争霸</h2></div>
+  <div class="section-box" id="wuxing"><h2 class="translatable">悟性争霸</h2></div>
+  <div class="section-box" id="penglai"><h2 class="translatable">蓬莱争霸</h2></div>
+  <div class="section-box" id="shezhan"><h2 class="translatable">舌战群儒</h2></div>
+  <div class="section-box" id="gongcheng"><h2 class="translatable">攻城战</h2></div>
+  <div class="section-box" id="qifeng"><h2 class="translatable">棋逢对手</h2></div>
+  <div class="section-box" id="yiji"><h2 class="translatable">遗迹争霸</h2></div>
+  <div class="section-box" id="nadamu"><h2 class="translatable">那达慕</h2></div>
+  <div class="section-box" id="qianji"><h2 class="translatable">千机迷云</h2></div>
+  <div class="section-box" id="qizhen"><h2 class="translatable">奇珍争霸</h2></div>
+  <div class="section-box" id="luidi"><h2 class="translatable">攻城掠地</h2></div>
+  <div class="section-box" id="qingci"><h2 class="translatable">青瓷御品</h2></div>
+  <div class="section-box" id="xiancai"><h2 class="translatable">贤才强国</h2></div>
+  <div class="section-box" id="loulan"><h2 class="translatable">逐鹿楼兰</h2></div>
+  <div class="section-box" id="weixun"><h2 class="translatable">威巡四海</h2></div>
+  <div class="section-box" id="xiuxue"><h2 class="translatable">皇子修学</h2></div>
+  <div class="section-box" id="shengwei"><h2 class="translatable">声威争霸</h2></div>
+  <div class="section-box" id="jiuge"><h2 class="translatable">九歌逸潭</h2></div>
+  <div class="section-box" id="zhenggu"><h2 class="translatable">钲鼓连烽</h2></div>
+  <div class="section-box" id="yujing"><h2 class="translatable">羽境凌川</h2></div>
+  <div class="section-box" id="liyuan"><h2 class="translatable">梨园溯隐</h2></div>
+  <div class="section-box" id="canjian"><h2 class="translatable">残简争霸</h2></div>
+  <div class="section-box" id="mingchen"><h2 class="translatable">名臣翊辅</h2></div>
+  <div class="section-box" id="jianhan"><h2 class="translatable">荐函争霸</h2></div>
+  <div class="section-box" id="jiulong"><h2 class="translatable">九龙窃闻</h2></div>
+
+  <!-- 底部 Footer -->
+  <footer>
+    <p class="translatable">© 2025 叫我万岁爷攻略站 | 非官方制作</p>
+  </footer>
+
 </body>
 </html>
