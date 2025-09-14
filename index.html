@@ -7,6 +7,18 @@
   <script src="lang.js"></script>
   
   <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
     body { 
       font-family: "Microsoft YaHei", Arial, sans-serif;
       margin: 0;
@@ -29,6 +41,10 @@
     }
     
     header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-shrink: 0;
       background: #8B0000;
       color: white;
       display: flex;
@@ -63,25 +79,39 @@
 
     .container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: 1fr; /* 一列显示 */
       gap: 20px;
       padding: 20px;
-      max-width: 1000px;
+      max-width: 600px; /* 限制卡片最大宽度，美观居中 */
       margin: auto;
+      flex: 1;          /* 占满剩余高度 */
+      overflow-y: auto; /* 内容超出可滚动 */
     }
     .card {
+      display: block; /* 整个卡片可点击 */
       background: white;
       border-radius: 10px;
       padding: 20px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .card h2 { margin-top: 0; color: #8B0000; }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .card h2 { 
+      margin-top: 0; 
+      color: #8B0000; 
+    }
     footer {
       text-align: center;
       padding: 15px;
       background: #333;
       color: white;
       margin-top: 20px;
+      flex-shrink: 0;
     }
   </style>
 </head>
@@ -89,7 +119,8 @@
   <!-- 顶部 -->
   <header>
     <a href="index.html" class="translatable" style="color:white; text-decoration:none; font-size:1.5em; font-weight:bold;">
-    叫我万岁爷攻略站</a>
+      叫我万岁爷攻略站
+    </a>
     
     <div class="menu">
       <a href="guides/development.html" class="translatable">游戏养成</a>
@@ -104,29 +135,27 @@
 
   <!-- 主要内容 -->
   <div class="container translatable">
-    <div class="card">
-      <h2>🎮 养成发展</h2>
+    <a href="guides/development.html" class="card">
+      <h2>🎮 游戏养成</h2>
       <p>大臣、妃子、悟性、珍宝、府邸、爵位等养成系统解析。</p>
-      <a href="guides/development.html">进入 →</a>
-    </div>
-
-    <div class="card">
-      <h2>💎 充值相关</h2>
-      <p>VIP价格、元宝礼包、各国价格表，一目了然。</p>
-      <a href="guides/topup.html">进入 →</a>
-    </div>
-
-    <div class="card">
+    </a>
+    
+    <a href="guides/cross-server.html" class="card">
       <h2>🌐 跨服活动</h2>
-      <p>圣君、古藏、旷古系列活动，详细玩法与攻略技巧。</p>
-      <a href="guides/cross-server.html">进入 →</a>
-    </div>
+      <p>跨服活动详细玩法与攻略技巧。</p>
+    </a>
 
-    <div class="card">
-      <h2>📚 其他</h2>
-      <p>涉川题库、谜题答案，以及万岁庆典等特别活动。</p>
-      <a href="guides/other.html">进入 →</a>
-    </div>
+    <a href="guides/other.html" class="card">
+      <h2>📚 其他活动</h2>
+      <p>涉川题库、谜题答案，以及万岁庆典等活动。</p>
+    </a>
+    
+    <a href="guides/topup.html" class="card">
+      <h2>💎 充值相关</h2>
+      <p>VIP价格、元宝礼包、各国价格，一目了然。</p>
+    </a>
+
+
   </div>
 
   <!-- 底部 -->
