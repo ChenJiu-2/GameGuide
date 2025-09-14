@@ -7,22 +7,23 @@
   <script src="../lang.js"></script>
   
   <style>
-    /* 公共样式 */
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-    }
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
       font-family: "Microsoft YaHei", Arial, sans-serif;
-      line-height: 1.6;
+    }
+
+    body {
       background: url("../background.jpg") no-repeat center center fixed;
       background-size: cover;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      line-height: 1.6;
     }
+
     body::before {
       content: "";
       position: fixed;
@@ -32,6 +33,7 @@
       z-index: -1;
     }
 
+    /* Header */
     header {
       position: sticky;
       top: 0;
@@ -72,27 +74,57 @@
     /* 内容区域 */
     .content {
       flex: 1;
-      padding: 20px;
       max-width: 1200px;
-      margin: 20px auto 20px auto;
-      background: rgba(255,255,255,0.8);
-      width: 100%;
+      margin: 20px auto;
+      padding: 0 20px;
     }
-    h1 { color: darkblue; }
-    h2 { margin-top: 20px; }
-    ul { list-style-type: none; padding-left: 0; }
-    li { margin: 6px 0; }
-    a { text-decoration: none; color: blue; }
-    a:hover { text-decoration: underline; }
 
-    /* footer */
+    /* 页面标题 */
+    .page-title {
+      color: red;
+      font-size: 2em;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    /* 本页导航 */
+    .sub-menu {
+      margin-bottom: 20px;
+    }
+    .sub-menu ul {
+      list-style-type: disc;
+      padding-left: 40px;
+    }
+    .sub-menu a {
+      text-decoration: none;
+      color: darkred;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .sub-menu a:hover {
+      background: #f0c0c0;
+    }
+
+    /* 每个内容框 */
+    .section-box {
+      background: rgba(255,255,255,0.9);
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    .section-box h2 {
+      margin-top: 0;
+      color: darkblue;
+    }
+
+    /* Footer */
     footer {
       text-align: center;
       padding: 15px;
       background: #333;
       color: white;
       flex-shrink: 0;
-      margin-top: 20px;
     }
   </style>
 </head>
@@ -100,14 +132,14 @@
 
   <!-- 顶部 Header -->
   <header>
-    <a href="../index.html" class="translatable" style="color:white; text-decoration:none; font-size:1.5em; font-weight:bold;">
+    <a href="../index.html" style="color:white; text-decoration:none; font-size:1.5em; font-weight:bold;">
       叫我万岁爷攻略站
     </a>
     <div class="menu">
-      <a href="development.html" class="translatable">游戏养成</a>
-      <a href="cross-server.html" class="translatable">跨服活动</a>
-      <a href="other.html" class="translatable">其他活动</a>
-      <a href="topup.html" class="translatable">充值相关</a>
+      <a href="development.html">游戏养成</a>
+      <a href="cross-server.html">跨服活动</a>
+      <a href="other.html">其他活动</a>
+      <a href="topup.html">充值相关</a>
       <button onclick="toSimplified()">简</button>
       <span style="color:white;">|</span>
       <button onclick="toTraditional()">繁</button>
@@ -115,44 +147,95 @@
   </header>
 
   <!-- 页面内容 -->
-  <div class="content translatable">
-    <h1 class="translatable">游戏养成</h1>
+  <div class="content">
+    <!-- 页面标题 -->
+    <div class="page-title">游戏养成</div>
 
-    <h2>大臣列表</h2>
-    <ul>
-      <li>亘古</li>
-      <li>不朽</li>
-      <li>传奇</li>
-      <li>无双</li>
-      <li>卓越</li>
-      <li>优秀</li>
-    </ul>
+    <!-- 本页导航 -->
+    <nav class="sub-menu">
+      <ul>
+        <li><a href="#ministers">大臣列表 - 擅长，资质，妃子</a></li>
+        <li><a href="#consorts">妃子列表 - 势力效果，势力点加成属性</a></li>
+        <li><a href="#intelligence">悟性列表</a></li>
+        <li><a href="#treasure">珍宝属性</a></li>
+        <li><a href="#residence">府邸</a></li>
+        <li><a href="#king-level">君王等级</a></li>
+        <li><a href="#children">子女</a></li>
+        <li><a href="#upgrade-silver">大臣升级银两（预估）</a></li>
+        <li><a href="#title-combine">爵位合成数量</a></li>
+        <li><a href="#trade-experience">海贸升级经验</a></li>
+      </ul>
+    </nav>
 
-    <h2>妃子列表</h2>
-    <ul>
-      <li>亘古</li>
-      <li>不朽</li>
-      <li>传奇</li>
-      <li>无双</li>
-      <li>卓越</li>
-      <li>优秀</li>
-    </ul>
+    <!-- 各章节内容 -->
+    <div class="section-box" id="ministers">
+      <h2>大臣列表 - 擅长，资质，妃子</h2>
+      <ul>
+        <li>亘古</li>
+        <li>不朽</li>
+        <li>传奇</li>
+        <li>无双</li>
+        <li>卓越</li>
+        <li>优秀</li>
+      </ul>
+    </div>
 
-    <h2>其他内容</h2>
-    <ul>
-      <li>悟性列表</li>
-      <li>珍宝属性</li>
-      <li>府邸</li>
-      <li>君王等级</li>
-      <li>子女</li>
-      <li>大臣升级银两（预估）</li>
-      <li>爵位合成数量</li>
-      <li>海贸升级经验</li>
-    </ul>
+    <div class="section-box" id="consorts">
+      <h2>妃子列表 - 势力效果，势力点加成属性</h2>
+      <ul>
+        <li>亘古</li>
+        <li>不朽</li>
+        <li>传奇</li>
+        <li>无双</li>
+        <li>卓越</li>
+        <li>优秀</li>
+      </ul>
+    </div>
+
+    <div class="section-box" id="intelligence">
+      <h2>悟性列表</h2>
+      <p>这里可以填悟性内容的详细说明。</p>
+    </div>
+
+    <div class="section-box" id="treasure">
+      <h2>珍宝属性</h2>
+      <p>这里可以填珍宝属性内容的详细说明。</p>
+    </div>
+
+    <div class="section-box" id="residence">
+      <h2>府邸</h2>
+      <p>这里可以填府邸内容的详细说明。</p>
+    </div>
+
+    <div class="section-box" id="king-level">
+      <h2>君王等级</h2>
+      <p>这里可以填君王等级内容的详细说明。</p>
+    </div>
+
+    <div class="section-box" id="children">
+      <h2>子女</h2>
+      <p>这里可以填子女内容的详细说明。</p>
+    </div>
+
+    <div class="section-box" id="upgrade-silver">
+      <h2>大臣升级银两（预估）</h2>
+      <p>这里可以填升级银两的详细说明。</p>
+    </div>
+
+    <div class="section-box" id="title-combine">
+      <h2>爵位合成数量</h2>
+      <p>这里可以填爵位合成数量的详细说明。</p>
+    </div>
+
+    <div class="section-box" id="trade-experience">
+      <h2>海贸升级经验</h2>
+      <p>这里可以填海贸升级经验的详细说明。</p>
+    </div>
+
   </div>
 
   <!-- 底部 Footer -->
-  <footer class="translatable">
+  <footer>
     <p>© 2025 叫我万岁爷攻略站 | 粉丝制作</p>
   </footer>
 
