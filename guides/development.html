@@ -119,6 +119,19 @@
       color: darkblue;
     }
 
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+    th {
+      background-color: #dcdcdc;
+    }
+
     /* Footer */
     footer {
       text-align: center;
@@ -181,6 +194,37 @@
     <div class="section-box" id="intelligence">
       <h2 class="translatable">悟性列表</h2>
       <p class="translatable">这里可以填悟性内容的详细说明。</p>
+      <table class="translatable">
+        <thead>
+          <tr>
+            <th>悟性等级</th>
+            <th>所需悟性</th>
+            <th>累计悟性</th>
+            <th>顿悟（解锁等级）</th>
+            <th>所需善本</th>
+            <th>累计善本</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1-50</td>
+            <td>35557</td>
+            <td>35557</td>
+            <td>1(50))</td>
+            <td>9</td>
+            <td>9</td>
+          </tr>
+          <tr>
+            <td>51-100</td>
+            <td>258832</td>
+            <td>394389</td>
+            <td>2(100)</td>
+            <td>18</td>
+            <td>27</td>
+          </tr>
+        </tbody>
+      </table>
+
     </div>
 
     <div class="section-box" id="treasure">
