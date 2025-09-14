@@ -4,21 +4,7 @@
   <meta charset="UTF-8">
   <title>游戏养成 - 叫我万岁爷攻略站</title>
   <script src="https://cdn.jsdelivr.net/npm/opencc-js/dist/umd/full.min.js"></script>
-  <script>
-    // 简繁转换函数
-    function toSimplified() {
-      const elements = document.querySelectorAll('.translatable');
-      elements.forEach(el => {
-        el.innerHTML = OpenCC.Converter({ from: 't', to: 's' }).convert(el.innerHTML);
-      });
-    }
-    function toTraditional() {
-      const elements = document.querySelectorAll('.translatable');
-      elements.forEach(el => {
-        el.innerHTML = OpenCC.Converter({ from: 's', to: 't' }).convert(el.innerHTML);
-      });
-    }
-  </script>
+  <script src="../lang.js"></script>
   
   <style>
     html, body {
@@ -89,7 +75,7 @@
     .content {
       flex: 1;
       max-width: 1200px;
-      margin: 0 auto; /* 去掉上下 margin */
+      margin: 0 auto;
       padding: 20px;
       width: 100%;
     }
@@ -147,7 +133,7 @@
 
   <!-- 顶部 Header -->
   <header>
-    <a href="../index.html" style="color:white; text-decoration:none; font-size:1.5em; font-weight:bold;">
+    <a href="../index.html" class="translateble" style="color:white; text-decoration:none; font-size:1.5em; font-weight:bold;">
       叫我万岁爷攻略站
     </a>
     <div class="menu">
@@ -162,7 +148,7 @@
   </header>
 
   <!-- 页面内容 -->
-  <div class="content">
+  <div class="content translateble">
 
     <!-- 页面标题 -->
     <div class="page-title translatable">游戏养成</div>
