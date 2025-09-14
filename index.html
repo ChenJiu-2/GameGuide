@@ -14,44 +14,40 @@
       background: #f4f4f4; 
       line-height: 1.6; 
     }
+    /* 顶部导航条 */
     header {
       background: #8B0000;
       color: white;
-      padding: 20px 0;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      height: 60px;
     }
-    header h1 { margin: 0; font-size: 2em; }
-    nav {
-      background: #333;
-      padding: 10px;
-      text-align: center;
+    header h1 {
+      margin: 0;
+      font-size: 1.5em;
     }
-    nav a {
-      display: inline-block;
-      margin: 0 15px;
-      padding: 8px 15px;
+    .menu {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .menu a, .menu button {
       color: white;
       text-decoration: none;
-      border-radius: 5px;
+      font-size: 1em;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 4px;
       transition: background 0.3s;
     }
-    nav a:hover { background: #8B0000; }
-    .lang-switch {
-      text-align: center;
-      margin: 15px 0;
-    }
-    .lang-switch button {
-      margin: 0 5px;
-      padding: 6px 12px;
-      border: none;
-      background: #8B0000;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .lang-switch button:hover {
+    .menu a:hover, .menu button:hover {
       background: #a52a2a;
     }
+
     .container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -77,24 +73,20 @@
   </style>
 </head>
 <body>
-  <header class="translatable">
-    <h1>叫我万岁爷攻略站</h1>
-    <p>非官方粉丝攻略站，汇总养成、充值、跨服活动与其他玩法</p>
+  <!-- 顶部 -->
+  <header>
+    <h1 class="translatable">叫我万岁爷攻略站</h1>
+    <div class="menu">
+      <a href="guides/development.html" class="translatable">游戏养成</a>
+      <a href="guides/cross-server.html" class="translatable">跨服活动</a>
+      <a href="guides/other.html" class="translatable">其他活动</a>
+      <a href="guides/topup.html" class="translatable">充值相关</a>
+      <button onclick="toSimplified()">简</button>
+      <button onclick="toTraditional()">繁</button>
+    </div>
   </header>
 
-  <nav>
-    <a href="guides/development.html" class="translatable">🎮 养成发展</a>
-    <a href="guides/topup.html" class="translatable">💎 充值相关</a>
-    <a href="guides/cross-server.html" class="translatable">🌐 跨服活动</a>
-    <a href="guides/other.html" class="translatable">📚 其他</a>
-  </nav>
-
-  <!-- 简繁切换按钮 -->
-  <div class="lang-switch">
-    <button onclick="toSimplified()">简体</button>
-    <button onclick="toTraditional()">繁體</button>
-  </div>
-
+  <!-- 主要内容 -->
   <div class="container translatable">
     <div class="card">
       <h2>🎮 养成发展</h2>
@@ -121,10 +113,9 @@
     </div>
   </div>
 
+  <!-- 底部 -->
   <footer class="translatable">
     <p>© 2025 叫我万岁爷攻略站 | 粉丝制作</p>
   </footer>
-
-  </script>
 </body>
 </html>
