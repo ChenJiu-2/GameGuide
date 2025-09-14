@@ -2,34 +2,180 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <title>其他 - 叫我万岁爷攻略站</title>
+  <title>其他活动 - 叫我万岁爷攻略站</title>
+  <script src="https://cdn.jsdelivr.net/npm/opencc-js/dist/umd/full.min.js"></script>
+  <script src="../lang.js"></script>
+
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
-    h1 { color: darkgreen; }
-    nav a { margin-right: 15px; text-decoration: none; color: blue; }
-    nav a:hover { text-decoration: underline; }
-    ul { list-style-type: none; padding-left: 0; }
-    li { margin: 6px 0; }
-    footer { margin-top: 40px; font-size: 0.9em; color: gray; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    body {
+      background: url("../background.jpg") no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(255,255,255,0.5);
+      z-index: -1;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-shrink: 0;
+      background: darkgolden;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      height: 60px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+    .menu {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .menu a, .menu button {
+      color: white;
+      text-decoration: none;
+      font-size: 1em;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    .menu a:hover, .menu button:hover {
+      background: indigo;
+    }
+
+    /* 内容区 */
+    .content {
+      flex: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      width: 100%;
+    }
+
+    .page-title {
+      color: purple;
+      font-size: 2em;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    /* 本页导航 */
+    .sub-menu {
+      margin-bottom: 20px;
+    }
+    .sub-menu ul {
+      list-style-type: disc;
+      padding-left: 40px;
+    }
+    .sub-menu a {
+      text-decoration: none;
+      color: darkgolden;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .sub-menu a:hover {
+      background: #e0c0ff;
+    }
+
+    /* Section 框 */
+    .section-box {
+      background: rgba(255,255,255,0.9);
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    .section-box h2 {
+      margin-top: 0;
+      color: darkgolden;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #333;
+      color: white;
+      flex-shrink: 0;
+    }
   </style>
 </head>
 <body>
-  <h1>其他内容</h1>
 
-  <nav>
-    <a href="../index.html">🏠 返回首页</a>
-  </nav>
+  <!-- 顶部 Header -->
+  <header>
+    <a href="index.html" class="translatable" style="color:white; text-decoration:none; font-size:1.5em; font-weight:bold;">
+      叫我万岁爷攻略站
+    </a>
+    
+    <div class="menu">
+      <a href="guides/development.html" class="translatable">游戏养成</a>
+      <a href="guides/cross-server.html" class="translatable">跨服活动</a>
+      <a href="guides/other.html" class="translatable">其他活动</a>
+      <a href="guides/topup.html" class="translatable">充值相关</a>
+      <button onclick="toSimplified()">简</button>
+      <span style="color:white;">|</span>
+      <button onclick="toTraditional()">繁</button>
+    </div>
+  </header>
 
-  <h2>涉川</h2>
-  <ul>
-    <li><a href="shechuan.html">涉川题库与谜题</a></li>
-  </ul>
+  <!-- 页面内容 -->
+  <div class="content translateble">
 
-  <h2>万岁庆典</h2>
-  <p>这里可以放万岁庆典活动的攻略，后续可以再扩展。</p>
+    <!-- 页面标题 -->
+    <div class="page-title translatable">其他活动</div>
 
+    <!-- 本页导航 -->
+    <nav class="sub-menu translatable">
+      <ul>
+        <li><a href="#shechuan">涉川万路</a></li>
+          <ul>
+            <li><a href="#dati">答题库</a></li>
+            <li><a href="#jiemi">解密机关</a></li>
+            <li><a href="#bianren">辨认真伪</a></li>
+          </ul>
+        <li><a href="#wansui">万岁庆典</a></li>
+        <li><a href="#saiji">赛季积分</a></li>
+      </ul>
+    </nav>
+
+  <!-- 各活动内容框 -->
+  <div class="section-box" id="shechuan"><h2 class="translatable">涉川万路</h2></div>
+  <div class="section-box" id="wansui"><h2 class="translatable">万岁庆典</h2></div>
+  <div class="section-box" id="saiji"><h2 class="translatable">赛季积分</h2></div>
+
+  <!-- 底部 Footer -->
   <footer>
-    <p>© 2025 叫我万岁爷攻略站</p>
+    <p class="translatable">© 2025 叫我万岁爷攻略站 | 非官方制作</p>
   </footer>
+
 </body>
 </html>
