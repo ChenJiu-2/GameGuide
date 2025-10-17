@@ -100,6 +100,19 @@
       color: darkgreen;
     }
 
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+    th {
+      background-color: #dcdcdc;
+    }
+    
     /* Footer */
     footer {
       text-align: center;
@@ -151,9 +164,31 @@
       <p class="translatable">这里可以放不同等级 VIP 的价格表。</p>
     </div>
 
+    <!-- 来源：FB金钱钱 -->
     <div class="section-box">
       <h2 class="translatable">各国价格表</h2>
-      <p class="translatable">整理人民币、港币、台币等价格对照表。</p>
+      <table class="translatable">
+        <thead>
+          <tr>
+            <th>CNY</th><th>HKD</th><th>MYR</th><th>SGD</th><th>TWD</th><th>USD</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>6</td><td>8</td><td>4.9</td><td>1.48</td><td>30</td><td>0.99</td></tr>
+          <tr><td>12</td><td>15</td><td>9.9</td><td>2.98</td><td>70</td><td>1.99</td></tr>
+          <tr><td>18</td><td>23</td><td>13.9</td><td>4.48</td><td>100</td><td>2.99</td></tr>
+          <tr><td>30</td><td>38</td><td>23.9</td><td>6.98</td><td>170</td><td>4.99</td></tr>
+          <tr><td>68</td><td>78</td><td>44.9</td><td>14.98</td><td>330</td><td>9.99</td></tr>
+          <tr><td>98</td><td>118</td><td>69.9</td><td>21.98</td><td>490</td><td>14.99</td></tr>
+          <tr><td>128</td><td>158</td><td>94.9</td><td>28.98</td><td>670</td><td>19.99</td></tr>
+          <tr><td>198</td><td>238</td><td>144.9</td><td>44.98</td><td>990</td><td>29.99</td></tr>
+          <tr><td>288</td><td>363</td><td>219.9</td><td>64.98</td><td>1530</td><td>45.99</td></tr>
+          <tr><td>328</td><td>398</td><td>239.9</td><td>68.98</td><td>1690</td><td>49.99</td></tr>
+          <tr><td>488</td><td>588</td><td>349.9</td><td>104.98</td><td>2490</td><td>74.99</td></tr>
+          <tr><td>648</td><td>788</td><td>479.9</td><td>148.98</td><td>3290</td><td>99.99</td></tr>
+          <tr><td>2598</td><td>3088</td><td>1899.9</td><td>588.98</td><td>12900</td><td>399.99</td></tr>
+        </tbody>
+      </table>
     </div>
 
   </div>
