@@ -140,6 +140,26 @@
       color: white;
       flex-shrink: 0;
     }
+    #backToTop {
+      position: fixed;
+      bottom: 30px;       /* 离底部距离 */
+      right: 30px;        /* 离右边距离 */
+      background-color: #ccc;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 30px;
+      cursor: pointer;
+      display: none;       /* 初始隐藏 */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: background 0.3s, transform 0.2s;
+    }
+    #backToTop:hover {
+      background-color: #555;
+      transform: scale(1.1);
+    }
   </style>
 </head>
 <body>
@@ -339,7 +359,23 @@
   <!-- 底部 Footer -->
   <footer>
     <p class="translatable">© 2025 叫我万岁爷攻略站 | 非官方制作</p>
+    <button id="backToTop" title="返回顶部">▲</button>
   </footer>
+  
+  <script>
+  window.onscroll = function() {
+    const btn = document.getElementById("backToTop");
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      btn.style.display = "block";
+    } else {
+      btn.style.display = "none";
+    }
+  };
+
+  document.getElementById("backToTop").onclick = function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  </script>
 
 </body>
 </html>
