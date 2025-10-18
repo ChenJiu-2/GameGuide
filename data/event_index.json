@@ -1,0 +1,215 @@
+{
+	"event":[
+	{
+	"id": "jianhan",
+	"name": "跨服荐函",
+	"type": "荐函→龙气",
+	"file": "../data/jianhan.json"
+	},
+	{
+	"id": "qingci",
+	"name": "青瓷御品",
+	"type": "体力→龙气",
+	"file": "../data/qingci.json"
+	},
+	{
+	"id": "jianrui",
+	"name": "健锐演兵",
+	"type": "积分→龙气",
+	"file": "../data/jianrui.json"
+	},
+	{
+	"id": "manhan",
+	"name": "满汉全席",
+	"type": "积分→龙气",
+	"file": "../data/manhan.json"
+	},
+	{
+	"id": "xiuxue",
+	"name": "皇子修学",
+	"type": "经验→龙气",
+	"file": "../data/xiuxue.json"
+	},
+	{
+	"id": "zhengu",
+	"name": "钲鼓连烽",
+	"type": "战功→龙气",
+	"file": "../data/zhengu.json"
+	},
+	{
+	"id": "gongchengld",
+	"name": "攻城掠地",
+	"type": "体力→龙气",
+	"file": "../data/gongchengld.json"
+	},
+	{
+	"id": "yintai",
+	"name": "银台对雪",
+	"type": "积分→龙气",
+	"file": "../data/yintai.json"
+	},
+	{
+	"id": "qinmi",
+	"name": "跨服亲密",
+	"type": "亲密点→龙气",
+	"file": "../data/qinmi.json"
+	},
+	{
+	"id": "jiuge",
+	"name": "九歌逸潭",
+	"type": "积分→龙气",
+	"file": "../data/jiuge.json"
+	},
+	{
+	"id": "ruyi",
+	"name": "如意赠佳人",
+	"type": "积分→龙气",
+	"file": "../data/ruyi.json"
+	},
+	{
+	"id": "wuxing",
+	"name": "跨服悟性",
+	"type": "悟性→龙气",
+	"file": "../data/wuxing.json"
+	},
+	{
+	"id": "weixun",
+	"name": "威巡四海",
+	"type": "体力→龙气",
+	"file": "../data/weixun.json"
+	},
+	{
+	"id": "paibing",
+	"name": "排兵布阵",
+	"type": "体力→龙气",
+	"file": "../data/paibing.json"
+	},
+	{
+	"id": "guoli",
+	"name": "跨服国力",
+	"type": "资质果→龙气",
+	"file": "../data/guoli.json"
+	},
+	{
+	"id": "qifeng",
+	"name": "棋逢对手",
+	"type": "体力→龙气",
+	"file": "../data/qifeng.json"
+	},
+	{
+	"id": "xunbao",
+	"name": "联盟寻宝",
+	"type": "体力→龙气",
+	"file": "../data/xunbao.json"
+	},
+	{
+	"id": "qizhen",
+	"name": "跨服奇珍",
+	"type": "奇珍→龙气",
+	"file": "../data/qizhen.json"
+	},
+	{
+	"id": "loulan",
+	"name": "逐鹿楼兰",
+	"type": "体力→龙气",
+	"file": "../data/loulan.json"
+	},
+	{
+	"id": "cuju",
+	"name": "宫廷蹴鞠",
+	"type": "贡献值→龙气",
+	"file": "../data/cuju.json"
+	},
+	{
+	"id": "shengwei",
+	"name": "声威争霸",
+	"type": "声威→龙气",
+	"file": "../data/shengwei.json"
+	},
+	{
+	"id": "shezhan",
+	"name": "舌战群儒",
+	"type": "静心丸→龙气",
+	"file": "../data/shezhan.json"
+	},
+	{
+	"id": "nadamu",
+	"name": "那达慕",
+	"type": "体力→龙气",
+	"file": "../data/nadamu.json"
+	},
+	{
+	"id": "jiulong",
+	"name": "九龙窃闻",
+	"type": "神捕令→龙气",
+	"file": "../data/jiulong.json"
+	},
+	{
+	"id": "fengyuan",
+	"name": "风鸢绘梦",
+	"type": "体力→龙气",
+	"file": "../data/fengyuan.json"
+	},
+	{
+	"id": "canjian",
+	"name": "残简争霸",
+	"type": "祝纹残简→龙气",
+	"file": "../data/canjian.json"
+	},
+	{
+	"id": "gongchengz",
+	"name": "攻城战",
+	"type": "体力→龙气",
+	"file": "../data/gongchengz.json"
+	},
+	{
+	"id": "penglai",
+	"name": "蓬莱仙岛",
+	"type": "体力→龙气",
+	"file": "../data/penglai.json"
+	},
+	{
+	"id": "qianji",
+	"name": "千机迷云",
+	"type": "积分→龙气",
+	"file": "../data/qianji.json"
+	},
+	{
+	"id": "liyuan",
+	"name": "梨园溯隐",
+	"type": "体力→龙气",
+	"file": "../data/liyuan.json"
+	},
+	{
+	"id": "liyuan",
+	"name": "梨园溯隐",
+	"type": "体力→龙气",
+	"file": "../data/liyuan.json"
+	},
+	{
+	"id": "dixun",
+	"name": "帝寻龙珀",
+	"type": "体力→龙气",
+	"file": "../data/dixun.json"
+	},
+	{
+	"id": "mc/xc",
+	"name": "名臣翊辅/贤才强国",
+	"type": "资质果→龙气",
+	"file": "../data/mc/xc.json"
+	},
+	{
+	"id": "yujing",
+	"name": "羽境凌川",
+	"type": "体力→龙气",
+	"file": "../data/yujing.json"
+	},
+	{
+	"id": "xuanji",
+	"name": "玄机搏阵",
+	"type": "体力→龙气",
+	"file": "../data/xuanji.json"
+	}
+	]
+}
+	
