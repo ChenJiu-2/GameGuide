@@ -131,6 +131,38 @@
       background-color: #dcdcdc;
     }
 
+   #calculator {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1em;
+    }
+    .stage-box {
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 0.8em;
+      background-color: #fafafa;
+    }
+    .stage-box h3 {
+      margin-top: 0;
+      font-size: 1.1em;
+      border-bottom: 1px solid #ddd;
+    }
+    input[type="number"] {
+      width: 80px;
+      margin-left: 0.5em;
+    }
+    button#calc-btn {
+      background-color: #4682b4;
+      color: white;
+      border: none;
+      padding: 0.5em 1.5em;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button#calc-btn:hover {
+      background-color: #36648b;
+    }
+
     /* Footer */
     footer {
       text-align: center;
@@ -261,7 +293,55 @@
       上限：3500真龙龙珠
 
     </div>
-    <div class="section-box" id="saiji"><h2 class="translatable">赛季积分</h2></div>
+    <div class="section-box" id="saiji">
+      <h2 class="translatable">赛季积分</h2></div>
+
+      <from id="calculator">
+        
+        <!-- 第一阶段 -->
+        <div class="stage-box>
+          <h3>第一阶段</h3>
+          <label>跨服荐函：<input type="number" id="jianhan" placeholder="荐函数量"></label><br>
+          <label>青瓷御品：<input type="number" id="ti_li" placeholder="体力"></label><br>
+          <label>健锐演兵：<input type="number" id="jianrui" placeholder="积分"></label><br>
+          <label>满汉全席：<input type="number" id="manhan" placeholder="积分"></label>
+        </div>
+        
+        <!-- 第二阶段 -->
+        <div class="stage-box">
+          <h3>第二阶段</h3>
+          <label>皇子修学：<input type="number" id="xuexi" placeholder="经验"></label><br>
+          <label>钲鼓连烽：<input type="number" id="zhangong" placeholder="战功"></label>
+        </div>
+    
+        <!-- 第三阶段 -->
+        <div class="stage-box">
+          <h3>第三阶段</h3>
+          <label>跨服亲密：<input type="number" id="qinmi" placeholder="亲密点"></label><br>
+          <label>九歌逸潭：<input type="number" id="jiuge" placeholder="积分"></label>
+        </div>
+    
+        <!-- 第四阶段 -->
+        <div class="stage-box">
+          <h3>第四阶段</h3>
+          <label>跨服悟性：<input type="number" id="wuxing" placeholder="悟性"></label><br>
+          <label>威巡四海：<input type="number" id="weixun" placeholder="体力"></label>
+        </div>
+    
+        <!-- 第五阶段 -->
+        <div class="stage-box">
+          <h3>第五阶段</h3>
+          <label>跨服奇珍：<input type="number" id="qizhen" placeholder="奇珍数量"></label>
+        </div>
+    
+        <!-- 计算按钮 -->
+        <div style="margin-top: 1em;">
+          <button type="button" id="calc-btn">计算总龙气</button>
+        </div>
+  </form>
+
+  <!-- 结果显示 -->
+  <div id="result" style="margin-top: 1em; font-weight: bold;"></div>
 
   </div>
 
