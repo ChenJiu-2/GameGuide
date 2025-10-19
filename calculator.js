@@ -12,7 +12,7 @@ async function calculateTotal() {
 
   for (const ev of events) {
     const inputEl = document.getElementById(ev.id);
-    if (!inputEl) continue; // 你的 HTML 没这个活动就跳过
+    if (!inputEl) continue; // 如果 HTML 没这个活动，就跳过
 
     const value = Number(inputEl.value);
     if (isNaN(value) || value <= 0) continue;
@@ -21,7 +21,7 @@ async function calculateTotal() {
       const res = await fetch(ev.file);
       const data = await res.json();
 
-      // 从 "荐函→龙气" 中取出前半段作为字段名
+      // 从 "荐函→龙气" 等文字中取出前半段作为字段名
       const inputKey = ev.type.split("→")[0].trim();
 
       // 找到 ≤ 输入值 的最大档位
@@ -56,4 +56,12 @@ async function calculateTotal() {
 window.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("calc-btn");
   if (btn) btn.addEventListener("click", calculateTotal);
+
+  // ✅ 新增：跨服悟性2（使用同一个 wuxing.json）
+  const wuxing2Input = document.getElementById("wuxing2");
+  if (wuxing2Input) {
+    wuxing2Input.addEventListener("input", () => {
+      calculateTotal();
+    });
+  }
 });
