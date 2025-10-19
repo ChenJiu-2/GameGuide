@@ -175,10 +175,10 @@
 	"file": "../data/qianji.json"
 	},
 	{
-	"id": "liyuan",
-	"name": "梨园溯隐",
-	"type": "体力→龙气",
-	"file": "../data/liyuan.json"
+	"id": "wuxing2",
+	"name": "跨服悟性2",
+	"type": "悟性→龙气",
+	"file": "../data/wuxing.json"
 	},
 	{
 	"id": "liyuan",
@@ -214,3 +214,4 @@
 }
 
 	
+
