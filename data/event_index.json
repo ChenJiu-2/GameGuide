@@ -193,10 +193,10 @@
 	"file": "../data/dixun.json"
 	},
 	{
-	"id": "mc/xc",
+	"id": "mcxc",
 	"name": "名臣翊辅/贤才强国",
 	"type": "资质果→龙气",
-	"file": "../data/mc/xc.json"
+	"file": "../data/mcxc.json"
 	},
 	{
 	"id": "yujing",
@@ -212,4 +212,5 @@
 	}
 	]
 }
+
 	
