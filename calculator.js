@@ -56,12 +56,4 @@ async function calculateTotal() {
 window.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("calc-btn");
   if (btn) btn.addEventListener("click", calculateTotal);
-
-  // ✅ 新增：跨服悟性2（使用同一个 wuxing.json）
-  const wuxing2Input = document.getElementById("wuxing2");
-  if (wuxing2Input) {
-    wuxing2Input.addEventListener("input", () => {
-      calculateTotal();
-    });
-  }
 });
