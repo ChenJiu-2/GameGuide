@@ -21,8 +21,16 @@ async function calculateTotal() {
       const res = await fetch(ev.file);
       const data = await res.json();
 
-      // 从 "荐函→龙气" 等文字中取出前半段作为字段名
       const inputKey = ev.type.split("→")[0].trim();
+
+       // 取得最低档门槛
+      const minThreshold = Number(data[0][inputKey]);
+
+      // 如果输入比最低档还低 → 直接 0 龙气
+      if (value < minThreshold) {
+        results.push(`${ev.name}: 0`);
+        continue;
+      }
 
       // 找到 ≤ 输入值 的最大档位
       let matched = null;
@@ -35,7 +43,7 @@ async function calculateTotal() {
         }
       }
 
-      const longqi = Number(matched["总龙气"]) || 0 : 0;
+      const longqi = matched ? Number(matched["总龙气"]) || 0 : 0;
       totalLongQi += longqi;
       results.push(`${ev.name}: ${longqi}`);
 
