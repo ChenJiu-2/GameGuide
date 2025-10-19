@@ -137,21 +137,43 @@
       grid-template-columns: repeat(5, 1fr);
       gap: 1em;
     }
-    .stage-box {
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      padding: 0.8em;
-      background-color: #fafafa;
-    }
-    .stage-box h3 {
-      margin-top: 0;
-      font-size: 1.1em;
-      border-bottom: 1px solid #ddd;
-    }
-    input[type="number"] {
-      width: 80px;
-      margin-left: 0.5em;
-    }
+    /* --- 阶段区的布局 --- */
+  .stage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
+    margin-bottom: 1em;
+  }
+  
+  /* 单个阶段盒子 */
+  .stage-box {
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 0.8em;
+    background-color: #fafafa;
+    transition: box-shadow 0.2s;
+  }
+  .stage-box:hover {
+    box-shadow: 0 0 8px rgba(0,0,0,0.15);
+  }
+  
+  /* 标题和输入框细节 */
+  .stage-box h3 {
+    margin-top: 0;
+    font-size: 1.1em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.3em;
+    color: darkgoldenrod;
+  }
+  .stage-box label {
+    display: block;
+    margin: 0.3em 0;
+  }
+  .stage-box input[type="number"] {
+    width: 100%;
+    max-width: 120px;
+    margin-top: 0.2em;
+  }
     button#calc-btn {
       background-color: #4682b4;
       color: white;
@@ -313,26 +335,75 @@
           <h3>第二阶段</h3>
           <label>皇子修学：<input type="number" id="xiuxue" placeholder="经验"></label><br>
           <label>钲鼓连烽：<input type="number" id="zhenggu" placeholder="战功"></label>
+          <label>攻城掠地：<input type="number" id="gongchengld" placeholder="体力"></label>
+          <label>银台对雪：<input type="number" id="yintai" placeholder="积分"></label>
         </div>
     
         <!-- 第三阶段 -->
         <div class="stage-box">
           <h3>第三阶段</h3>
-          <label>跨服亲密：<input type="number" id="qinmi" placeholder="亲密点"></label><br>
+          <label>跨服亲密：<input type="number" id="qinmi" placeholder="亲密点"></label>
           <label>九歌逸潭：<input type="number" id="jiuge" placeholder="积分"></label>
+          <label>如意赠佳人：<input type="number" id="ruyi" placeholder="积分"></label>
         </div>
     
         <!-- 第四阶段 -->
         <div class="stage-box">
           <h3>第四阶段</h3>
-          <label>跨服悟性：<input type="number" id="wuxing" placeholder="悟性"></label><br>
+          <label>跨服悟性：<input type="number" id="wuxing" placeholder="悟性"></label>
           <label>威巡四海：<input type="number" id="weixun" placeholder="体力"></label>
+          <label>排兵演阵：<input type="number" id="paibing" placeholder="体力"></label>
         </div>
     
         <!-- 第五阶段 -->
         <div class="stage-box">
           <h3>第五阶段</h3>
-          <label>跨服奇珍：<input type="number" id="qizhen" placeholder="奇珍数量"></label>
+          <label>跨服国力：<input type="number" id="guoli" placeholder="资质果"></label>
+          <label>棋逢对手：<input type="number" id="qifeng" placeholder="体力"></label>
+          <label>联盟寻宝：<input type="number" id="xunbao" placeholder="体力"></label>
+        </div>
+
+        <!-- 第六阶段 -->
+        <div class="stage-box">
+          <h3>第六阶段</h3>
+          <label>跨服奇珍：<input type="number" id="qizhen" placeholder="奇珍"></label>
+          <label>逐鹿楼兰：<input type="number" id="qifeng" placeholder="体力"></label>
+          <label>宫廷蹴鞠：<input type="number" id="cuju" placeholder="贡献值"></label>
+        </div>
+
+        <!-- 第七阶段 -->
+        <div class="stage-box">
+          <h3>第七阶段</h3>
+          <label>声威争霸：<input type="number" id="shengwei" placeholder="声威"></label>
+          <label>舌战群儒：<input type="number" id="shezhan" placeholder="静心丸"></label>
+          <label>那达慕：<input type="number" id="nadamu" placeholder="体力"></label>
+          <label>九龙窃闻：<input type="number" id="jiulong" placeholder="神捕令"></label>
+          <label>风鸢绘梦：<input type="number" id="fengyuan" placeholder="体力"></label>
+        </div>
+
+        <!-- 第八阶段 -->
+        <div class="stage-box">
+          <h3>第八阶段</h3>
+          <label>残简争霸：<input type="number" id="canjian" placeholder="祝纹残简"></label><br>
+          <label>跨服攻城战：<input type="number" id="gongchengz" placeholder="体力"></label>
+          <label>蓬莱仙岛：<input type="number" id="penglai" placeholder="体力"></label>
+          <label>千机迷云：<input type="number" id="qianji" placeholder="积分"></label>
+        </div>
+
+        <!-- 第九阶段 -->
+        <div class="stage-box">
+          <h3>第九阶段</h3>
+          <label>跨服悟性2：<input type="number" id="wuxing" placeholder="悟性"></label>
+          <label>梨园溯隐：<input type="number" id="liyuan" placeholder="体力"></label>
+          <label>帝寻龙珀：<input type="number" id="dixun" placeholder="体力"></label>
+        </div>
+
+        <!-- 第十阶段 -->
+        <div class="stage-box">
+          <h3>第十阶段</h3>
+          <label>名臣翊辅/贤才强国：<input type="mc/xc id="wuxing" placeholder="资质果"></label>
+          <label>羽境凌川：<input type="number" id="yujing" placeholder="体力"></label>
+          <label>玄机搏阵：<input type="number" id="xuanji" placeholder="体力"></label>
         </div>
 
         <div id="calculator" class="translatable"></div>
