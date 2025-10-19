@@ -25,7 +25,7 @@ async function calculateTotal() {
       const inputKey = ev.type.split("→")[0].trim();
 
       // 找到 ≤ 输入值 的最大档位
-      let matched = data[0];
+      let matched = null;
       for (const d of data) {
         const threshold = Number(d[inputKey]);
         if (!isNaN(threshold) && threshold <= value) {
@@ -35,7 +35,7 @@ async function calculateTotal() {
         }
       }
 
-      const longqi = Number(matched["总龙气"]) || 0;
+      const longqi = Number(matched["总龙气"]) || 0 : 0;
       totalLongQi += longqi;
       results.push(`${ev.name}: ${longqi}`);
 
