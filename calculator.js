@@ -1,60 +1,59 @@
-document.addEventListener("DOMContentLoaded", async function () {
-  const container = document.getElementById("calculator");
-  const resultBox = document.getElementById("result");
+// calculator.js
+async function loadEventIndex() {
+  const res = await fetch("../data/event_index.json");
+  const data = await res.json();
+  return data.event;
+}
 
-  let eventList = [];
+async function calculateTotal() {
+  const events = await loadEventIndex();
+  let totalLongQi = 0;
+  let results = [];
 
-  // 加载 event_index.json
-  try {
-    const res = await fetch("data/event_index.json");
-    const json = await res.json();
-    eventList = json.event;
-  } catch (err) {
-    console.error("无法读取 event_index.json", err);
-    container.innerHTML = "<p style='color:red;'>❌ 无法加载活动索引</p>";
-    return;
+  for (const ev of events) {
+    const inputEl = document.getElementById(ev.id);
+    if (!inputEl) continue; // 你的 HTML 没这个活动就跳过
+
+    const value = Number(inputEl.value);
+    if (isNaN(value) || value <= 0) continue;
+
+    try {
+      const res = await fetch(ev.file);
+      const data = await res.json();
+
+      // 从 "荐函→龙气" 中取出前半段作为字段名
+      const inputKey = ev.type.split("→")[0].trim();
+
+      // 找到 ≤ 输入值 的最大档位
+      let matched = data[0];
+      for (const d of data) {
+        const threshold = Number(d[inputKey]);
+        if (!isNaN(threshold) && threshold <= value) {
+          matched = d;
+        } else {
+          break;
+        }
+      }
+
+      const longqi = Number(matched["总龙气"]) || 0;
+      totalLongQi += longqi;
+      results.push(`${ev.name}: ${longqi}`);
+
+    } catch (err) {
+      console.warn(`无法读取 ${ev.name} (${ev.file})`, err);
+    }
   }
 
-  // 动态生成输入框
-  eventList.forEach(ev => {
-    const div = document.createElement("div");
-    div.className = "stage-box";
-    div.innerHTML = `
-      <h3>${ev.name}</h3>
-      <label>${ev.type.split("→")[0]}：
-        <input type="number" id="${ev.id}" placeholder="${ev.type.split("→")[0]}">
-      </label>
-    `;
-    container.appendChild(div);
-  });
+  // 显示结果
+  document.getElementById("result").innerHTML = `
+    ${results.join("<br>")}
+    <hr>
+    <strong>总龙气：${totalLongQi}</strong>
+  `;
+}
 
-  // 添加计算按钮
-  const btn = document.createElement("button");
-  btn.id = "calc-btn";
-  btn.textContent = "计算总龙气";
-  btn.style.marginTop = "1em";
-  container.appendChild(btn);
-
-  // 点击计算
-  btn.addEventListener("click", async () => {
-    let totalLongQi = 0;
-
-    for (const ev of eventList) {
-      const val = parseFloat(document.getElementById(ev.id)?.value) || 0;
-      if (val === 0) continue;
-
-      try {
-        const res = await fetch(ev.file);
-        const data = await res.json();
-
-        // 找出对应档位
-        let matched = data.find(d => val <= parseFloat(d["祝纹残简"])) || data[data.length - 1];
-        totalLongQi += parseFloat(matched["龙气"]) || 0;
-      } catch (e) {
-        console.error(`读取 ${ev.name} (${ev.file}) 失败：`, e);
-      }
-    }
-
-    resultBox.textContent = `✨ 总龙气：${totalLongQi.toLocaleString()}`;
-  });
+// 按钮绑定事件
+window.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("calc-btn");
+  if (btn) btn.addEventListener("click", calculateTotal);
 });
