@@ -48,7 +48,7 @@ async function calculateTotal() {
   document.getElementById("result").innerHTML = `
     ${results.join("<br>")}
     <hr>
-    <strong>总龙气：${totalLongQi}</strong>
+    <strong>总龙气：${totalLongQi.toLocaleString()}</strong>
   `;
 }
 
