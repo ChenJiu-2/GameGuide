@@ -310,8 +310,8 @@
               if (keyword === '') return;
       
               const filtered = data.filter(item =>
-                item.question.toLowerCase().includes(keyword) ||
-                item.answer.toLowerCase().includes(keyword)
+                (item.题目 && item.题目.toLowerCase().includes(keyword)) ||
+                (item.答案 && item.答案.toLowerCase().includes(keyword))
               );
       
               if (filtered.length === 0) {
