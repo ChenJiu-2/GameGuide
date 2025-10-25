@@ -284,54 +284,80 @@
     </nav>
 
     <!-- 各活动内容框 -->
+    <!-- 来源：FB金銭銭 -->
     <div class="section-box" id="shechuan">
       <h2 class="translatable">涉川万路</h2>
       <div class="section-box" id="dati">
         <h2 class="translatable">答题库</h2>
-        <input type="text" id="searchInput" placeholder="输入关键字搜索题目或答案...">
+        <input type="text" id="searchInput" placeholder="输入题目或答案关键词...">
         <div id="search"></div>
         <script>
           let data = [];
-          // 从外部 JSON 文件加载题库
+          let currentLang = localStorage.getItem('lang') || 'traditional';
+        
           async function loadData() {
             const res = await fetch('../data/questions.json');
             data = await res.json();
           }
-          // 搜索逻辑
+        
           async function init() {
             await loadData();
+        
             const input = document.getElementById('searchInput');
             const resultsDiv = document.getElementById('search');
-      
+        
+            // 根据当前语言建立转换器
+            const converter = currentLang === 'simplified'
+              ? OpenCC.Converter({ from: 'tw', to: 'cn' })
+              : OpenCC.Converter({ from: 'cn', to: 'tw' });
+        
             input.addEventListener('input', () => {
               const keyword = input.value.trim().toLowerCase();
               resultsDiv.innerHTML = '';
-      
+        
               if (keyword === '') return;
-      
+        
+              // 搜索逻辑（原始繁体数据中找匹配）
               const filtered = data.filter(item =>
                 (item.题目 && item.题目.toLowerCase().includes(keyword)) ||
                 (item.答案 && item.答案.toLowerCase().includes(keyword))
               );
-      
+        
               if (filtered.length === 0) {
                 resultsDiv.innerHTML = '<p>没有找到相关题目。</p>';
               } else {
                 filtered.forEach(item => {
                   const div = document.createElement('div');
                   div.classList.add('result');
+        
+                  // 转换题目 & 答案语言
+                  const convertedQuestion = converter(item.题目);
+                  const convertedAnswer = converter(item.答案);
+        
                   div.innerHTML = `
-                    <div class="question">题目：${item.题目}</div>
-                    <div class="answer">答案：${item.答案}</div>
+                    <div class="question">题目：${convertedQuestion}</div>
+                    <div class="answer">答案：${convertedAnswer}</div>
                   `;
                   resultsDiv.appendChild(div);
                 });
               }
             });
           }
-      
+        
           init();
-        </script></div>
+        
+          // 简繁切换按钮功能（可和你现有按钮对应）
+          function toSimplified() {
+            localStorage.setItem('lang', 'simplified');
+            location.reload(); // 重新加载页面自动切换
+          }
+        
+          function toTraditional() {
+            localStorage.setItem('lang', 'traditional');
+            location.reload();
+          }
+        </script>
+      </div>
       
       <div class="section-box" id="jiemi">
         <h2 class="translatable">解密机关</h2></div>
