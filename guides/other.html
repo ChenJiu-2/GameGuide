@@ -264,6 +264,51 @@
       <h2 class="translatable">涉川万路</h2>
       <div class="section-box" id="dati">
         <h2 class="translatable">答题库</h2></div>
+        <input type="text" id="searchInput" placeholder="输入关键字搜索题目或答案...">
+        <div id="search"></div>
+        <script>
+          let data = [];
+          // 从外部 JSON 文件加载题库
+          async function loadData() {
+            const res = await fetch('../data/questions.json');
+            data = await res.json();
+          }
+          // 搜索逻辑
+          async function init() {
+            await loadData();
+            const input = document.getElementById('searchInput');
+            const resultsDiv = document.getElementById('results');
+      
+            input.addEventListener('input', () => {
+              const keyword = input.value.trim().toLowerCase();
+              resultsDiv.innerHTML = '';
+      
+              if (keyword === '') return;
+      
+              const filtered = data.filter(item =>
+                item.question.toLowerCase().includes(keyword) ||
+                item.answer.toLowerCase().includes(keyword)
+              );
+      
+              if (filtered.length === 0) {
+                resultsDiv.innerHTML = '<p>没有找到相关题目。</p>';
+              } else {
+                filtered.forEach(item => {
+                  const div = document.createElement('div');
+                  div.classList.add('result');
+                  div.innerHTML = `
+                    <div class="question">题目：${item.题目}</div>
+                    <div class="answer">答案：${item.答案}</div>
+                  `;
+                  resultsDiv.appendChild(div);
+                });
+              }
+            });
+          }
+      
+          init();
+        </script>
+      
       <div class="section-box" id="jiemi">
         <h2 class="translatable">解密机关</h2></div>
       <div class="section-box" id="bianren">
