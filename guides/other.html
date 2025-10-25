@@ -306,22 +306,30 @@
             const input = document.getElementById('searchInput');
             const resultsDiv = document.getElementById('search');
         
-            // 根据当前语言建立转换器
-            const converter = currentLang === 'simplified'
-              ? OpenCC.Converter({ from: 'tw', to: 'cn' })
-              : OpenCC.Converter({ from: 'cn', to: 'tw' });
+            // 建立转换器
+            const toSimplified = OpenCC.Converter({ from: 'tw', to: 'cn' });
+            const toTraditional = OpenCC.Converter({ from: 'cn', to: 'tw' });
+            const displayConverter =
+              currentLang === 'simplified' ? toSimplified : toTraditional;
         
             input.addEventListener('input', () => {
-              const keyword = input.value.trim().toLowerCase();
+              const keyword = input.value.trim();
               resultsDiv.innerHTML = '';
-        
               if (keyword === '') return;
         
-              // 搜索逻辑（原始繁体数据中找匹配）
-              const filtered = data.filter(item =>
-                (item.题目 && item.题目.toLowerCase().includes(keyword)) ||
-                (item.答案 && item.答案.toLowerCase().includes(keyword))
-              );
+              // 关键字转双版本
+              const keyword_s = toSimplified(keyword);
+              const keyword_t = toTraditional(keyword);
+        
+              // 搜索逻辑（繁简都匹配）
+              const filtered = data.filter(item => {
+                const q = item.题目;
+                const a = item.答案;
+                return (
+                  (q && (q.includes(keyword_s) || q.includes(keyword_t))) ||
+                  (a && (a.includes(keyword_s) || a.includes(keyword_t)))
+                );
+              });
         
               if (filtered.length === 0) {
                 resultsDiv.innerHTML = '<p>没有找到相关题目。</p>';
@@ -330,13 +338,13 @@
                   const div = document.createElement('div');
                   div.classList.add('result');
         
-                  // 转换题目 & 答案语言
-                  const convertedQuestion = converter(item.题目);
-                  const convertedAnswer = converter(item.答案);
+                  // 输出根据当前语言显示
+                  const question = displayConverter(item.题目);
+                  const answer = displayConverter(item.答案);
         
                   div.innerHTML = `
-                    <div class="question">题目：${convertedQuestion}</div>
-                    <div class="answer">答案：${convertedAnswer}</div>
+                    <div class="question">题目：${question}</div>
+                    <div class="answer">答案：${answer}</div>
                   `;
                   resultsDiv.appendChild(div);
                 });
@@ -346,10 +354,10 @@
         
           init();
         
-          // 简繁切换按钮功能（可和你现有按钮对应）
+          // 简繁切换按钮功能（页面切换）
           function toSimplified() {
             localStorage.setItem('lang', 'simplified');
-            location.reload(); // 重新加载页面自动切换
+            location.reload();
           }
         
           function toTraditional() {
