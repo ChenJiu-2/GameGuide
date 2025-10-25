@@ -306,22 +306,20 @@
             const input = document.getElementById('searchInput');
             const resultsDiv = document.getElementById('search');
         
-            // 建立转换器
+            // 建立繁简转换器
             const toSimplified = OpenCC.Converter({ from: 'tw', to: 'cn' });
             const toTraditional = OpenCC.Converter({ from: 'cn', to: 'tw' });
-            const displayConverter =
-              currentLang === 'simplified' ? toSimplified : toTraditional;
         
             input.addEventListener('input', () => {
               const keyword = input.value.trim();
               resultsDiv.innerHTML = '';
               if (keyword === '') return;
         
-              // 关键字转双版本
+              // 双版本关键字
               const keyword_s = toSimplified(keyword);
               const keyword_t = toTraditional(keyword);
         
-              // 搜索逻辑（繁简都匹配）
+              // 搜索逻辑（繁简都能匹配）
               const filtered = data.filter(item => {
                 const q = item.题目;
                 const a = item.答案;
@@ -332,19 +330,32 @@
               });
         
               if (filtered.length === 0) {
-                resultsDiv.innerHTML = '<p>没有找到相关题目。</p>';
+                resultsDiv.innerHTML =
+                  currentLang === 'simplified'
+                    ? '<p>没有找到相关题目。</p>'
+                    : '<p>沒有找到相關題目。</p>';
               } else {
                 filtered.forEach(item => {
                   const div = document.createElement('div');
                   div.classList.add('result');
         
-                  // 输出根据当前语言显示
-                  const question = displayConverter(item.题目);
-                  const answer = displayConverter(item.答案);
+                  // 根据用户当前语言输出
+                  const question =
+                    currentLang === 'simplified'
+                      ? toSimplified(item.题目)
+                      : toTraditional(item.题目);
+                  const answer =
+                    currentLang === 'simplified'
+                      ? toSimplified(item.答案)
+                      : toTraditional(item.答案);
         
                   div.innerHTML = `
-                    <div class="question">题目：${question}</div>
-                    <div class="answer">答案：${answer}</div>
+                    <div class="question">${
+                      currentLang === 'simplified' ? '题目' : '題目'
+                    }：${question}</div>
+                    <div class="answer">${
+                      currentLang === 'simplified' ? '答案' : '答案'
+                    }：${answer}</div>
                   `;
                   resultsDiv.appendChild(div);
                 });
@@ -354,7 +365,7 @@
         
           init();
         
-          // 简繁切换按钮功能（页面切换）
+          // ✅ 简繁切换按钮函数
           function toSimplified() {
             localStorage.setItem('lang', 'simplified');
             location.reload();
