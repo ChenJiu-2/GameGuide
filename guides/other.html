@@ -379,9 +379,10 @@
       </div>
       
       <div class="section-box" id="jiemi">
-        <h2 class="translatable">解密机关</h2></div>
+        <h2 class="translatable">解密机关</h2>
         <input type="text" id="searchInput" placeholder="输入题目或答案关键词...">
           <div id="search"></div>
+      
           <script>
             let data = [];
             let currentLang = localStorage.getItem('lang') || 'traditional';
@@ -480,6 +481,7 @@
               location.reload();
             }
           </script> 
+        </div>
       <div class="section-box" id="bianren">
         <h2 class="translatable">辨认真伪</h2></div>
     </div>
@@ -579,6 +581,9 @@
         <div style="margin-top: 1em;">
           <button type="button" id="calc-btn">计算总龙气</button>
         </div>
+
+        <p>资源冲榜大概率不会变，但9点和10点的活动可能会改变，只需要在别的阶段寻找当前活动并输入即可</p>
+        <p>因进位原因，实际获得的龙气会比计算的多一点</p>
   </form>
 
   <!-- 结果显示 -->
