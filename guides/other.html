@@ -292,16 +292,16 @@
         <input type="text" id="searchInput2" placeholder="输入题目或答案关键词...">
         <div id="search2"></div>
         <script>
-          let data = [];
+          let questionData = [];
           let currentLang = localStorage.getItem('lang') || 'traditional';
         
-          async function loadData() {
+          async function loadQuestionData() {
             const res = await fetch('../data/questions.json');
-            data = await res.json();
+            questionData = await res.json();
           }
         
-          async function init() {
-            await loadData();
+          async function initQuestion() {
+            await loadQuestionData();
         
             const input = document.getElementById('searchInput2');
             const resultsDiv = document.getElementById('search2');
@@ -320,7 +320,7 @@
               const keyword_t = toTraditional(keyword);
         
               // 搜索逻辑（繁简都能匹配）
-              const filtered = data.filter(item => {
+              const filtered = questionData.filter(item => {
                 const q = item.题目;
                 const a = item.答案;
                 return (
@@ -363,8 +363,6 @@
             });
           }
         
-          init();
-        
           // ✅ 简繁切换按钮函数
           function toSimplified() {
             localStorage.setItem('lang', 'simplified');
@@ -384,39 +382,41 @@
           <div id="search"></div>
       
           <script>
-            let data = [];
+            let puzzledata = [];
             let currentLang = localStorage.getItem('lang') || 'traditional';
           
-            async function loadData() {
+            async function loadPuzzleData() {
               const res = await fetch('../data/puzzle.json');
-              data = await res.json();
+              puzzleData = await res.json();
             }
           
-            async function init() {
-              await loadData();
+            async function initPuzzle() {
+              await loadPuzzleData();
           
               const input = document.getElementById('searchInput');
               const resultsDiv = document.getElementById('search');
           
               // 建立繁简转换器
-              const toSimplified = OpenCC.Converter({ from: 'tw', to: 'cn' });
-              const toTraditional = OpenCC.Converter({ from: 'cn', to: 'tw' });
+              const toSimplified = await OpenCC.Converter({ from: 'tw', to: 'cn' });
+              const toTraditional = await OpenCC.Converter({ from: 'cn', to: 'tw' });
           
               input.addEventListener('input', () => {
                 const keyword = input.value.trim();
                 resultsDiv.innerHTML = '';
                 if (keyword === '') return;
           
-                // 同时创建简体和繁体关键词
                 const keyword_s = toSimplified(keyword);
                 const keyword_t = toTraditional(keyword);
           
-                // 搜索逻辑（支持多答案字段）
-                const filtered = data.filter(item => {
+                const filtered = puzzleData.filter(item => {
                   const q = item.题目 || '';
                   const answers = [item.答案1, item.答案2, item.答案3, item.答案4]
                     .filter(a => a && a.trim() !== '')
                     .join(' ');
+                  const q_s = toSimplified(q);
+                  const q_t = toTraditional(q);
+                  const a_s = toSimplified(answers);
+                  const a_t = toTraditional(answers);
                   return (
                     q.includes(keyword_s) ||
                     q.includes(keyword_t) ||
@@ -435,20 +435,17 @@
                     const div = document.createElement('div');
                     div.classList.add('result');
           
-                    // 根据语言转换题目
                     const question =
                       currentLang === 'simplified'
                         ? toSimplified(item.题目)
                         : toTraditional(item.题目);
           
-                    // 筛出有效答案 + 繁简转换
                     const answers = [item.答案1, item.答案2, item.答案3, item.答案4]
                       .filter(a => a && a.trim() !== '')
                       .map(a =>
                         currentLang === 'simplified' ? toSimplified(a) : toTraditional(a)
                       );
           
-                    // 拼接答案HTML
                     let answerHTML = '';
                     answers.forEach((ans, i) => {
                       answerHTML += `<div class="answer">${
@@ -468,18 +465,10 @@
               });
             }
           
-            init();
-          
-            // 语言切换按钮函数
-            function toSimplified() {
-              localStorage.setItem('lang', 'simplified');
-              location.reload();
-            }
-          
-            function toTraditional() {
-              localStorage.setItem('lang', 'traditional');
-              location.reload();
-            }
+            document.addEventListener('DOMContentLoaded', () => {
+              initQuestion();
+              initPuzzle();
+            });
           </script> 
         </div>
       <div class="section-box" id="bianren">
