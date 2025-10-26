@@ -278,8 +278,8 @@
             <li><a href="#bianren">辨认真伪</a></li>
           </ul>
         </li>
-        <li><a href="#wansui">万岁庆典</a></li>
         <li><a href="#saiji">赛季积分</a></li>
+        <li><a href="#wansui">万岁庆典</a></li>
       </ul>
     </nav>
 
@@ -380,56 +380,110 @@
       
       <div class="section-box" id="jiemi">
         <h2 class="translatable">解密机关</h2></div>
+        <input type="text" id="searchInput" placeholder="输入题目或答案关键词...">
+          <div id="search"></div>
+          <script>
+            let data = [];
+            let currentLang = localStorage.getItem('lang') || 'traditional';
+          
+            async function loadData() {
+              const res = await fetch('../data/puzzle.json');
+              data = await res.json();
+            }
+          
+            async function init() {
+              await loadData();
+          
+              const input = document.getElementById('searchInput');
+              const resultsDiv = document.getElementById('search');
+          
+              // 建立繁简转换器
+              const toSimplified = OpenCC.Converter({ from: 'tw', to: 'cn' });
+              const toTraditional = OpenCC.Converter({ from: 'cn', to: 'tw' });
+          
+              input.addEventListener('input', () => {
+                const keyword = input.value.trim();
+                resultsDiv.innerHTML = '';
+                if (keyword === '') return;
+          
+                // 同时创建简体和繁体关键词
+                const keyword_s = toSimplified(keyword);
+                const keyword_t = toTraditional(keyword);
+          
+                // 搜索逻辑（支持多答案字段）
+                const filtered = data.filter(item => {
+                  const q = item.题目 || '';
+                  const answers = [item.答案1, item.答案2, item.答案3, item.答案4]
+                    .filter(a => a && a.trim() !== '')
+                    .join(' ');
+                  return (
+                    q.includes(keyword_s) ||
+                    q.includes(keyword_t) ||
+                    answers.includes(keyword_s) ||
+                    answers.includes(keyword_t)
+                  );
+                });
+          
+                if (filtered.length === 0) {
+                  resultsDiv.innerHTML =
+                    currentLang === 'simplified'
+                      ? '<p>没有找到相关题目。</p>'
+                      : '<p>沒有找到相關題目。</p>';
+                } else {
+                  filtered.forEach(item => {
+                    const div = document.createElement('div');
+                    div.classList.add('result');
+          
+                    // 根据语言转换题目
+                    const question =
+                      currentLang === 'simplified'
+                        ? toSimplified(item.题目)
+                        : toTraditional(item.题目);
+          
+                    // 筛出有效答案 + 繁简转换
+                    const answers = [item.答案1, item.答案2, item.答案3, item.答案4]
+                      .filter(a => a && a.trim() !== '')
+                      .map(a =>
+                        currentLang === 'simplified' ? toSimplified(a) : toTraditional(a)
+                      );
+          
+                    // 拼接答案HTML
+                    let answerHTML = '';
+                    answers.forEach((ans, i) => {
+                      answerHTML += `<div class="answer">${
+                        currentLang === 'simplified' ? '答案' : '答案'
+                      } ${i + 1}：${ans}</div>`;
+                    });
+          
+                    div.innerHTML = `
+                      <div class="question">${
+                        currentLang === 'simplified' ? '题目' : '題目'
+                      }：${question}</div>
+                      ${answerHTML}
+                    `;
+                    resultsDiv.appendChild(div);
+                  });
+                }
+              });
+            }
+          
+            init();
+          
+            // 语言切换按钮函数
+            function toSimplified() {
+              localStorage.setItem('lang', 'simplified');
+              location.reload();
+            }
+          
+            function toTraditional() {
+              localStorage.setItem('lang', 'traditional');
+              location.reload();
+            }
+          </script> 
       <div class="section-box" id="bianren">
         <h2 class="translatable">辨认真伪</h2></div>
     </div>
 
-    <!-- 来源：贴吧言言 -->
-    <div class="section-box" id="wansui">
-      <h2 class="translatable">万岁庆典</h2>
-      <p>建议根据阶段奖励使用龙珠，剩余龙珠可保留</p>
-      <table class="translatable">
-        <thead>
-          <tr>
-            <th>累积使用小龙珠（黄）次数</th>
-            <th>阶段奖励</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>10</td><td>灵猫护符*1</td></tr>
-          <tr><td>20</td><td>灵猫护符*1</td></tr>
-          <tr><td>30</td><td>灵猫护符*1</td></tr>
-          <tr><td>40</td><td>灵猫护符*1</td></tr>
-          <tr><td>50</td><td>灵猫护符*1</td></tr>
-          <tr><td>60</td><td>灵猫护符*1</td></tr>
-          <tr><td>70</td><td>灵猫护符*2</td></tr>
-          <tr><td>80</td><td>灵猫护符*2</td></tr>
-          <tr><td>90</td><td>白虎护符*2</td></tr>
-          <tr><td>100</td><td>狮王护符*2</td></tr>
-        </tbody>
-      </table>
-      上限：100小龙珠
-      
-      <table class="translatable">
-        <thead>
-          <tr>
-            <th>累积使用真龙龙珠（红）次数</th>
-            <th>阶段奖励</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>20-200（每20个）</td><td>万万护符/白泽护符*1</td></tr>
-          <tr><td>200-400（每40个）</td><td>万万护符/白泽护符*2</td></tr>
-          <tr><td>400-800（每40个）</td><td>凤凰护符/金龙护符*1</td></tr>
-          <tr><td>800-1000（每50个）</td><td>凤凰护符/金龙护符*2</td></tr>
-          <tr><td>1000-2000（每200个）</td><td rowspan="3">万万护符/白泽护符*1 + 凤凰护符/金龙护符*1</td></tr>
-          <tr><td>2000-3000（每250个）</td></tr>
-          <tr><td>3000-3500</td></tr>
-        </tbody>
-      </table>
-      上限：3500真龙龙珠
-
-    </div>
     <div class="section-box" id="saiji">
       <h2 class="translatable">赛季积分</h2>
       
@@ -554,6 +608,53 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   </script>
+
+  <!-- 来源：贴吧言言 -->
+    <div class="section-box" id="wansui">
+      <h2 class="translatable">万岁庆典</h2>
+      <p>建议根据阶段奖励使用龙珠，剩余龙珠可保留</p>
+      <table class="translatable">
+        <thead>
+          <tr>
+            <th>累积使用小龙珠（黄）次数</th>
+            <th>阶段奖励</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>10</td><td>灵猫护符*1</td></tr>
+          <tr><td>20</td><td>灵猫护符*1</td></tr>
+          <tr><td>30</td><td>灵猫护符*1</td></tr>
+          <tr><td>40</td><td>灵猫护符*1</td></tr>
+          <tr><td>50</td><td>灵猫护符*1</td></tr>
+          <tr><td>60</td><td>灵猫护符*1</td></tr>
+          <tr><td>70</td><td>灵猫护符*2</td></tr>
+          <tr><td>80</td><td>灵猫护符*2</td></tr>
+          <tr><td>90</td><td>白虎护符*2</td></tr>
+          <tr><td>100</td><td>狮王护符*2</td></tr>
+        </tbody>
+      </table>
+      上限：100小龙珠
+      
+      <table class="translatable">
+        <thead>
+          <tr>
+            <th>累积使用真龙龙珠（红）次数</th>
+            <th>阶段奖励</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>20-200（每20个）</td><td>万万护符/白泽护符*1</td></tr>
+          <tr><td>200-400（每40个）</td><td>万万护符/白泽护符*2</td></tr>
+          <tr><td>400-800（每40个）</td><td>凤凰护符/金龙护符*1</td></tr>
+          <tr><td>800-1000（每50个）</td><td>凤凰护符/金龙护符*2</td></tr>
+          <tr><td>1000-2000（每200个）</td><td rowspan="3">万万护符/白泽护符*1 + 凤凰护符/金龙护符*1</td></tr>
+          <tr><td>2000-3000（每250个）</td></tr>
+          <tr><td>3000-3500</td></tr>
+        </tbody>
+      </table>
+      上限：3500真龙龙珠
+
+    </div>
   
 </body>
 </html>
