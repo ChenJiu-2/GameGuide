@@ -241,9 +241,13 @@
     }
   </style>
 </head>
+
+document.addEventListener('DOMContentLoaded', () => {
+              initQuestion();
+              initPuzzle();
+            });
   
 <body>
-
   <!-- 顶部 Header --> 
   <header>
     <a href="../index.html" class="translatable" style="color:white; text-decoration:none; font-size:1.5em; font-weight:bold;">
@@ -382,7 +386,7 @@
           <div id="search"></div>
       
           <script>
-            let puzzledata = [];
+            let puzzleData = [];
             let currentLang = localStorage.getItem('lang') || 'traditional';
           
             async function loadPuzzleData() {
@@ -397,8 +401,8 @@
               const resultsDiv = document.getElementById('search');
           
               // 建立繁简转换器
-              const toSimplified = await OpenCC.Converter({ from: 'tw', to: 'cn' });
-              const toTraditional = await OpenCC.Converter({ from: 'cn', to: 'tw' });
+              const toSimplified = OpenCC.Converter({ from: 'tw', to: 'cn' });
+              const toTraditional = OpenCC.Converter({ from: 'cn', to: 'tw' });
           
               input.addEventListener('input', () => {
                 const keyword = input.value.trim();
@@ -464,11 +468,6 @@
                 }
               });
             }
-          
-            document.addEventListener('DOMContentLoaded', () => {
-              initQuestion();
-              initPuzzle();
-            });
           </script> 
         </div>
       <div class="section-box" id="bianren">
@@ -526,7 +525,7 @@
         <div class="stage-box">
           <h3>第六阶段</h3>
           <label>跨服奇珍：<input type="number" id="qizhen" placeholder="奇珍"></label>
-          <label>逐鹿楼兰：<input type="number" id="qifeng" placeholder="体力"></label>
+          <label>逐鹿楼兰：<input type="number" id="loulan" placeholder="体力"></label>
           <label>宫廷蹴鞠：<input type="number" id="cuju" placeholder="贡献值"></label>
         </div>
 
