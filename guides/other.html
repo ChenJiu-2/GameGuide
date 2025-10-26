@@ -289,8 +289,8 @@
       <h2 class="translatable">涉川万路</h2>
       <div class="section-box" id="dati">
         <h2 class="translatable">答题库</h2>
-        <input type="text" id="searchInput" placeholder="输入题目或答案关键词...">
-        <div id="search"></div>
+        <input type="text" id="searchInput2" placeholder="输入题目或答案关键词...">
+        <div id="search2"></div>
         <script>
           let data = [];
           let currentLang = localStorage.getItem('lang') || 'traditional';
@@ -303,8 +303,8 @@
           async function init() {
             await loadData();
         
-            const input = document.getElementById('searchInput');
-            const resultsDiv = document.getElementById('search');
+            const input = document.getElementById('searchInput2');
+            const resultsDiv = document.getElementById('search2');
         
             // 建立繁简转换器
             const toSimplified = OpenCC.Converter({ from: 'tw', to: 'cn' });
