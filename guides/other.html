@@ -241,11 +241,6 @@
     }
   </style>
 </head>
-
-document.addEventListener('DOMContentLoaded', () => {
-              initQuestion();
-              initPuzzle();
-            });
   
 <body>
   <!-- 顶部 Header --> 
@@ -295,36 +290,36 @@ document.addEventListener('DOMContentLoaded', () => {
         <h2 class="translatable">答题库</h2>
         <input type="text" id="searchInput2" placeholder="输入题目或答案关键词...">
         <div id="search2"></div>
-        <script>
-          let questionData = [];
+         <script>
+          let data = [];
           let currentLang = localStorage.getItem('lang') || 'traditional';
-        
-          async function loadQuestionData() {
+
+          async function loadData() {
             const res = await fetch('../data/questions.json');
-            questionData = await res.json();
+            data = await res.json();
           }
-        
-          async function initQuestion() {
-            await loadQuestionData();
-        
+
+          async function init() {
+            await loadData();
+
             const input = document.getElementById('searchInput2');
             const resultsDiv = document.getElementById('search2');
-        
+
             // 建立繁简转换器
             const toSimplified = OpenCC.Converter({ from: 'tw', to: 'cn' });
             const toTraditional = OpenCC.Converter({ from: 'cn', to: 'tw' });
-        
+
             input.addEventListener('input', () => {
               const keyword = input.value.trim();
               resultsDiv.innerHTML = '';
               if (keyword === '') return;
-        
+
               // 双版本关键字
               const keyword_s = toSimplified(keyword);
               const keyword_t = toTraditional(keyword);
-        
+
               // 搜索逻辑（繁简都能匹配）
-              const filtered = questionData.filter(item => {
+              const filtered = data.filter(item => {
                 const q = item.题目;
                 const a = item.答案;
                 return (
@@ -332,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   (a && (a.includes(keyword_s) || a.includes(keyword_t)))
                 );
               });
-        
+
               if (filtered.length === 0) {
                 resultsDiv.innerHTML =
                   currentLang === 'simplified'
@@ -342,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 filtered.forEach(item => {
                   const div = document.createElement('div');
                   div.classList.add('result');
-        
+
                   // 根据用户当前语言输出
                   const question =
                     currentLang === 'simplified'
@@ -352,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     currentLang === 'simplified'
                       ? toSimplified(item.答案)
                       : toTraditional(item.答案);
-        
+
                   div.innerHTML = `
                     <div class="question">${
                       currentLang === 'simplified' ? '题目' : '題目'
@@ -366,13 +361,15 @@ document.addEventListener('DOMContentLoaded', () => {
               }
             });
           }
-        
+
+          init();
+
           // ✅ 简繁切换按钮函数
           function toSimplified() {
             localStorage.setItem('lang', 'simplified');
             location.reload();
           }
-        
+
           function toTraditional() {
             localStorage.setItem('lang', 'traditional');
             location.reload();
