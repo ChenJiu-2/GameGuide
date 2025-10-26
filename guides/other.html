@@ -591,29 +591,6 @@
 
   </div>
 
-  <!-- 底部 Footer -->
-  <footer>
-    <p class="translatable">© 2025 叫我万岁爷攻略站 | 非官方制作</p>
-    <button id="backToTop" title="返回顶部">▲</button>
-  </footer>
-
-  <script>
-  // 当页面滚动超过 300px 时显示按钮
-  window.onscroll = function() {
-    const btn = document.getElementById("backToTop");
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 300) {
-      btn.style.display = "block";
-    } else {
-      btn.style.display = "none";
-    }
-  };
-
-  // 点击按钮返回顶部
-  document.getElementById("backToTop").onclick = function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-  </script>
-
   <!-- 来源：贴吧言言 -->
     <div class="section-box" id="wansui">
       <h2 class="translatable">万岁庆典</h2>
@@ -660,6 +637,29 @@
       上限：3500真龙龙珠
 
     </div>
+
+  <!-- 底部 Footer -->
+  <footer>
+    <p class="translatable">© 2025 叫我万岁爷攻略站 | 非官方制作</p>
+    <button id="backToTop" title="返回顶部">▲</button>
+  </footer>
+
+  <script>
+  // 当页面滚动超过 300px 时显示按钮
+  window.onscroll = function() {
+    const btn = document.getElementById("backToTop");
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 300) {
+      btn.style.display = "block";
+    } else {
+      btn.style.display = "none";
+    }
+  };
+
+  // 点击按钮返回顶部
+  document.getElementById("backToTop").onclick = function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  </script>
   
 </body>
 </html>
