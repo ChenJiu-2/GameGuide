@@ -414,7 +414,8 @@
           
                 const filtered = puzzleData.filter(item => {
                   const q = item.题目 || '';
-                  const answers = [item.答案1, item.答案2, item.答案3, item.答案4]
+                  //const answers = [item.答案1, item.答案2, item.答案3, item.答案4]
+                  const answers = [item.答案1]
                     .filter(a => a && a.trim() !== '')
                     .join(' ');
                   
@@ -441,7 +442,8 @@
                         ? toSimplified(item.题目)
                         : toTraditional(item.题目);
           
-                    const answers = [item.答案1, item.答案2, item.答案3, item.答案4]
+                    //const answers = [item.答案1, item.答案2, item.答案3, item.答案4]
+                    const answers = [item.答案1]
                       .filter(a => a && a.trim() !== '')
                       .map(a => currentLang === 'simplified' ? toSimplified(a) : toTraditional(a));
           
