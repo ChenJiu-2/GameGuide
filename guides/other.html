@@ -414,10 +414,7 @@
                   const answers = [item.答案1, item.答案2, item.答案3, item.答案4]
                     .filter(a => a && a.trim() !== '')
                     .join(' ');
-                  const q_s = toSimplified(q);
-                  const q_t = toTraditional(q);
-                  const a_s = toSimplified(answers);
-                  const a_t = toTraditional(answers);
+                  
                   return (
                     q.includes(keyword_s) ||
                     q.includes(keyword_t) ||
@@ -465,6 +462,8 @@
                 }
               });
             }
+
+            initPuzzle();
           </script> 
         </div>
       <div class="section-box" id="bianren">
