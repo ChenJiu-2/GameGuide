@@ -387,8 +387,11 @@
             let currentLang = localStorage.getItem('lang') || 'traditional';
           
             async function loadPuzzleData() {
+              try{
               const res = await fetch('../data/puzzle.json');
               puzzleData = await res.json();
+              }catch(error){
+                console.error("加载失败");}
             }
           
             async function initPuzzle() {
