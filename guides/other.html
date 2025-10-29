@@ -390,8 +390,9 @@
               try{
               const res = await fetch('../data/puzzle.json');
               puzzleData = await res.json();
-              }catch(error){
-                console.error("加载失败");}
+              } catch(error) {
+                console.error("加载失败"，error);
+              }
             }
           
             async function initPuzzle() {
@@ -400,7 +401,6 @@
               const input = document.getElementById('searchInput');
               const resultsDiv = document.getElementById('search');
           
-              // 建立繁简转换器
               const toSimplified = OpenCC.Converter({ from: 'tw', to: 'cn' });
               const toTraditional = OpenCC.Converter({ from: 'cn', to: 'tw' });
           
@@ -443,9 +443,7 @@
           
                     const answers = [item.答案1, item.答案2, item.答案3, item.答案4]
                       .filter(a => a && a.trim() !== '')
-                      .map(a =>
-                        currentLang === 'simplified' ? toSimplified(a) : toTraditional(a)
-                      );
+                      .map(a => currentLang === 'simplified' ? toSimplified(a) : toTraditional(a));
           
                     let answerHTML = '';
                     answers.forEach((ans, i) => {
